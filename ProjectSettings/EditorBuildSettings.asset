@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menus/BetterMainMenu.unity
+    guid: bdf5aa7da1b09b345977c4299d395646
+  - enabled: 1
+    path: Assets/Scenes/Menus/LevelSelect.unity
+    guid: fe7aa7121ea0d5b4f822e3e78b147aba
+  - enabled: 1
+    path: Assets/Scenes/Games/CupGame.unity
+    guid: 85f22a8e7a3d56d4395eef60fdf5855b
+  - enabled: 1
+    path: Assets/Scenes/Games/TeaCupTerror.unity
+    guid: 6b185e0d53b383247be686bcdec620ac
+  - enabled: 1
+    path: Assets/Scenes/Games/LiamTheFall.unity
+    guid: 9ce46103d9ae08443b3ec6788d6375b8
+  - enabled: 1
+    path: Assets/Scenes/Games/AlienChaos.unity
+    guid: a52f85fb10f5ad34880e33784c6f0f91
+  - enabled: 1
+    path: Assets/Scenes/Menus/SettingsMenu.unity
+    guid: b023b0679c6fba741834c45567e6f6be
+  m_configObjects: {}

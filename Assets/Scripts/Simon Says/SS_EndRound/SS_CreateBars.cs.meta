@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 2afc70a90dec74d42afe23727e249bb1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - playerBarPrefab: {fileID: 5823591074890468242, guid: 006ad18f4fb078d499ef0feef4f2f897, type: 3}
+  - canvas: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
