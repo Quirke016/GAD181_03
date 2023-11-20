@@ -109,6 +109,7 @@ public class SS_PlayerControl : MonoBehaviour
 
     public void Left(InputAction.CallbackContext context)
     {
-        Debug.Log("LEFT");
+        
+        Debug.Log("LEFT " + context);
     }
 }

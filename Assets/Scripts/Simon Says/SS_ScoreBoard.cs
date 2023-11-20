@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class SS_ScoreBoard : MonoBehaviour
 {
-    [Range(1, 4)]
+    //[Range(1, 4)]
     public int numberOfPlayers;
     GameObject[] players;
     TextMeshPro[] scoreBoardList;
