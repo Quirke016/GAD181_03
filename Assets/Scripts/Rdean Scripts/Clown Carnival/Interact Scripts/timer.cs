@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class timer : MonoBehaviour
 {
@@ -20,17 +22,30 @@ public class timer : MonoBehaviour
     void Update()
     {
         timernumber -= Time.deltaTime; // sets the time to delta time
-        Timer.SetText(timernumber.ToString()); // converts the timer text to a string
-
+                                       // converts the timer text to a string
+        RdeanTimer(timernumber);
         CheckGameConditions();
+        
     }
 
 
+    public void RdeanTimer(float timernumber)
+    {
+        Timer.text = Mathf.RoundToInt(timernumber).ToString();
+    }
+
     public void CheckGameConditions() // a function that checks the conditions of the timer to see when it reaches 0
     {
-        if (timernumber == 0)
+        if (timernumber <= 0)
         {
+            SceneManager.LoadScene("BetterMainMenu"); // loads the main menu scene 
             Debug.Log("Game Over"); // Debugs out when the timer reaches 0 that the game is over
+            
+        }
+
+        else
+        {
+            Debug.Log("Check game condition is not working"); // debug log to check to see if the function is working
         }
     }
 }
