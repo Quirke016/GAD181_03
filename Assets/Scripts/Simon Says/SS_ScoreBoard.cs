@@ -22,6 +22,7 @@ public class SS_ScoreBoard : MonoBehaviour
     SS_CreateBars endBarsContol;
     public GameObject onScreenTextObject;
     TextMeshProUGUI onScreenText;
+    public GameObject onScreenInstructions;
 
 
     void SetTexter(TextMeshPro textBase, int playerNum, int score, int cheatCount)
@@ -85,7 +86,16 @@ public class SS_ScoreBoard : MonoBehaviour
         onScreenTextObject.SetActive(false);
     }
 
-
+    IEnumerator InstructionScreen()
+    {
+        onScreenInstructions.SetActive(true);
+        while (!Input.anyKey)
+        {
+            yield return null;
+        }
+        onScreenInstructions.SetActive(false);
+        StartCoroutine(StartGame());
+    }
     IEnumerator StartGame()
     {
         inIntro = true;
@@ -100,7 +110,11 @@ public class SS_ScoreBoard : MonoBehaviour
         inIntro = false;
         //StartEnemyRound();
     }
-
+    IEnumerator EndGame()
+    {
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(scene);
+    }
 
     bool CheckIfCanNextRound()
     {
@@ -124,8 +138,11 @@ public class SS_ScoreBoard : MonoBehaviour
         inIntro = true;
         GameSetup(numberOfPlayers);
         onScreenText = onScreenTextObject.GetComponent<TextMeshProUGUI>();
+
+
+
         inEndGame = false;
-        StartCoroutine(StartGame());
+        StartCoroutine(InstructionScreen());
     }
 
     [SerializeField] string scene;
@@ -158,7 +175,7 @@ public class SS_ScoreBoard : MonoBehaviour
             endBarsContol.StartEndOfRound(numberOfPlayers, playerPoints);
             inEndGame = true;
 
-            SceneManager.LoadScene(scene);
+            StartCoroutine(EndGame());
         }
     }
 }

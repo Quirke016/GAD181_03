@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 692120580206586431}
   - component: {fileID: 2132661703543072743}
   - component: {fileID: 9171458834933395058}
+  - component: {fileID: 3035660490913618678}
   m_Layer: 0
   m_Name: SS_Player
   m_TagString: Untagged
@@ -99,10 +100,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06a7d3a2c35e84942b6f04c53ee2f29f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerGuesss: []
   simonObject: {fileID: 0}
   playerPoint: 0
   playerSymbol: {fileID: 3887096790091688213}
   pointInRow: 0
+  guessTime: 0
+--- !u!114 &3035660490913618678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3085917016857386814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 4af447cb3431d2941a12e210b2b2b28f, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9171458834933395058}
+        m_TargetAssemblyTypeName: SS_PlayerControl, Assembly-CSharp
+        m_MethodName: Left
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7c2cfde8-3acf-400a-9440-da9eac6d27f1
+    m_ActionName: Player/Left[/Keyboard/a]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: New control scheme
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &6986081879212535615
 GameObject:
   m_ObjectHideFlags: 0

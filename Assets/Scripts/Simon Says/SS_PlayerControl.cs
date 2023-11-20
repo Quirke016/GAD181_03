@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SS_PlayerControl : MonoBehaviour
 {
@@ -73,7 +74,7 @@ public class SS_PlayerControl : MonoBehaviour
         {
             if (playerGuesss.Count <   simonPattern.Count)
             {
-
+                
                 if (Input.GetKeyDown(KeyCode.A))
                 {
                     AddColorToplayerList("yellow");
@@ -104,5 +105,10 @@ public class SS_PlayerControl : MonoBehaviour
         
 
 
+    }
+
+    public void Left(InputAction.CallbackContext context)
+    {
+        Debug.Log("LEFT");
     }
 }
