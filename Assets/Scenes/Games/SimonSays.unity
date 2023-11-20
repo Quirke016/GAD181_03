@@ -383,6 +383,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 3085917016857386814, guid: ed03bf2611dbe4540ba9c4cb92d9fcea, type: 3}
   simonObject: {fileID: 302217642}
   onScreenTextObject: {fileID: 462430666}
+  scene: BetterMainMenu
   maxRound: 1
 --- !u!4 &180412067
 Transform:

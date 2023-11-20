@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class SS_ScoreBoard : MonoBehaviour
 {
@@ -127,7 +128,7 @@ public class SS_ScoreBoard : MonoBehaviour
         StartCoroutine(StartGame());
     }
 
-
+    [SerializeField] string scene;
     bool inIntro;
     bool inEndGame;
     [Range(1,10)]
@@ -156,6 +157,8 @@ public class SS_ScoreBoard : MonoBehaviour
             Debug.Log("game over at round " + roundCounter);
             endBarsContol.StartEndOfRound(numberOfPlayers, playerPoints);
             inEndGame = true;
+
+            SceneManager.LoadScene(scene);
         }
     }
 }
