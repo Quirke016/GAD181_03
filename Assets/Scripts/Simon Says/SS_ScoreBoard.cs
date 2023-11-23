@@ -23,23 +23,26 @@ public class SS_ScoreBoard : MonoBehaviour
     public GameObject onScreenTextObject;
     TextMeshProUGUI onScreenText;
     public GameObject onScreenInstructions;
-
-
+    SS_PlayerGroupControl playerGroupContral;
+    public GameObject noteTextBlock;
     void SetTexter(TextMeshPro textBase, int playerNum, int score, int cheatCount)
     {
         textBase.text = "Player " + playerNum + "\nScore: " + score + "\nPointInRow: " + cheatCount;
     }
 
-    void GameSetup(int numberOfPlayers)
+    void GameSetup()
     {
+        
 
+        players = playerGroupContral.players.ToArray();
+        
 
-        endBarsContol = GetComponent<SS_CreateBars>();
-        patternSoftWere = simonObject.GetComponent<SS_PatternGen>();
+        numberOfPlayers = playerGroupContral.numberOfPlayers;
+        playerControls = playerGroupContral.playersBasicConrtols.ToArray();
 
         screenSize = 20;
-        players = new GameObject[numberOfPlayers];
-        playerControls = new SS_PlayerControl[numberOfPlayers];
+        
+        
         scoreBoardList = new TextMeshPro[numberOfPlayers];
         playerPoints = new int[numberOfPlayers];
         playerRowPoint = new int[numberOfPlayers];
@@ -48,10 +51,9 @@ public class SS_ScoreBoard : MonoBehaviour
         for (int i = 0; i < numberOfPlayers; i++)
         {
             Debug.Log("Created a new player");
-            players[i] = Instantiate(playerPrefab, new Vector2(((screenSize / numberOfPlayers) * ((i + 1) - (numberOfPlayers * 0.5f + 0.5f))), -3f), Quaternion.identity);
+            //6[i] = Instantiate(playerPrefab, new Vector2(((screenSize / numberOfPlayers) * ((i + 1) - (numberOfPlayers * 0.5f + 0.5f))), -3f), Quaternion.identity);
 
 
-            playerControls[i] = players[i].GetComponent<SS_PlayerControl>();
             playerControls[i].simonObject = simonObject;
 
             //textMesh.text = "got them";
@@ -98,7 +100,10 @@ public class SS_ScoreBoard : MonoBehaviour
     }
     IEnumerator StartGame()
     {
+        
         inIntro = true;
+        playerGroupContral.gameBeging = inIntro;
+        noteTextBlock.SetActive(true);
         StartCoroutine(ShowBigText("3", 0.9f));
         yield return new WaitForSeconds(1);
         StartCoroutine(ShowBigText("2", 0.9f));
@@ -106,8 +111,12 @@ public class SS_ScoreBoard : MonoBehaviour
         StartCoroutine(ShowBigText("1", 0.9f));
         yield return new WaitForSeconds(1);
         StartCoroutine(ShowBigText("Start", 0.5f));
+        noteTextBlock.SetActive(false);
         yield return new WaitForSeconds(0.25f);
         inIntro = false;
+        playerGroupContral.gameBeging = inIntro;
+        GameSetup();
+
         //StartEnemyRound();
     }
     IEnumerator EndGame()
@@ -136,13 +145,19 @@ public class SS_ScoreBoard : MonoBehaviour
     void Start()
     {
         inIntro = true;
-        GameSetup(numberOfPlayers);
+        
         onScreenText = onScreenTextObject.GetComponent<TextMeshProUGUI>();
 
 
 
         inEndGame = false;
         StartCoroutine(InstructionScreen());
+
+
+        //get the refence to other scripts code
+        playerGroupContral = GetComponent<SS_PlayerGroupControl>();
+        endBarsContol = GetComponent<SS_CreateBars>();
+        patternSoftWere = simonObject.GetComponent<SS_PatternGen>();
     }
 
     [SerializeField] string scene;

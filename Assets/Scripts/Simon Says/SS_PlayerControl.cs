@@ -12,19 +12,43 @@ public class SS_PlayerControl : MonoBehaviour
     public int playerPoint;
     public GameObject playerSymbol;
     SS_SymbolControl symbolContral;
-
     public int pointInRow;
-
+    public Sprite wrongSpite;
+    public Sprite rightSpite;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        patternSoftWere =  simonObject.GetComponent<SS_PatternGen>();
+      
+    }
+
+    public void SetUpObject(GameObject objectGame)
+    {
+        simonObject = objectGame;
+        patternSoftWere = simonObject.GetComponent<SS_PatternGen>();
         simonPattern = patternSoftWere.simonPattern;
         symbolContral = playerSymbol.GetComponent<SS_SymbolControl>();
+        
         guessTime = true;
     }
+
+    IEnumerator RightorWrong(bool isRight)
+    {
+        SpriteRenderer spiteRender = GetComponent<SpriteRenderer>();
+        if (isRight)
+        {
+            spiteRender.sprite = rightSpite;
+        }
+        else
+        {
+            spiteRender.sprite = wrongSpite;
+        }
+        spiteRender.enabled = true;
+        yield return new WaitForSeconds(0.2f);
+        spiteRender.enabled = false;
+    }
+
 
 
     void AddColorToplayerList(string addColor)
@@ -35,14 +59,14 @@ public class SS_PlayerControl : MonoBehaviour
             
             playerPoint += pointInRow;
             Debug.Log("the right color");
-            
+            StartCoroutine(RightorWrong(true));
 
         }
         else
         {
             Debug.Log("not the right color");
             pointInRow = 0;
-
+            StartCoroutine(RightorWrong(false));
         }
 
         playerGuesss.Add(addColor);
@@ -68,6 +92,10 @@ public class SS_PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            StartCoroutine(RightorWrong(true));
+        }
         Debug.Log("player guess " + playerGuesss.Count + "    Simon pattern " + simonPattern.Count);
         Debug.Log("Count " + (playerGuesss.Count <= simonPattern.Count));
         if (!patternSoftWere.simonTurn)
