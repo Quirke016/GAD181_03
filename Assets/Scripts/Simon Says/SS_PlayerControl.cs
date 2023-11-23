@@ -17,10 +17,15 @@ public class SS_PlayerControl : MonoBehaviour
     public Sprite rightSpite;
 
 
+
+
     // Start is called before the first frame update
     void Start()
     {
-      
+
+   
+
+
     }
 
     public void SetUpObject(GameObject objectGame)
@@ -60,30 +65,39 @@ public class SS_PlayerControl : MonoBehaviour
             playerPoint += pointInRow;
             Debug.Log("the right color");
             StartCoroutine(RightorWrong(true));
-
+            //PlaySymbolSound(addColor);
+            symbolContral.states = patternSoftWere.GetColorNumber(addColor);
         }
         else
         {
             Debug.Log("not the right color");
             pointInRow = 0;
             StartCoroutine(RightorWrong(false));
+            symbolContral.states = 4;
+
+
+
+
         }
 
         playerGuesss.Add(addColor);
-        ChangeSymbalColor(addColor, 0.5f);
+        //ChangeSymbalColor(addColor, 0.5f);
+
+
+        StartCoroutine(symbolContral.ChangeSize(0.5f, new Vector3(1f, 1f, 1f), new Vector3(2f, 2f, 2f)));
 
     }
 
 
 
-    void ChangeSymbalColor(string colorName, float duration)
-    {
-        
-        symbolContral.states = patternSoftWere.GetColorNumber(colorName);
-        StartCoroutine(symbolContral.ChangeSize(duration, new Vector3(1f,1f,1f), new Vector3(2f,2f,2f)));
+    /* void ChangeSymbalColor(string colorName, float duration)
+     {
+         symbolContral.states = patternSoftWere.GetColorNumber(addColor);
 
-    }
+         StartCoroutine(symbolContral.ChangeSize(duration, new Vector3(1f,1f,1f), new Vector3(2f,2f,2f)));
 
+     }
+ */
     public bool guessTime;
 
 

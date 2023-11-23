@@ -3,7 +3,12 @@ guid: 06a7d3a2c35e84942b6f04c53ee2f29f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - simonObject: {instanceID: 0}
+  - playerSymbol: {instanceID: 0}
+  - wrongSpite: {instanceID: 0}
+  - rightSpite: {instanceID: 0}
+  - soundWrong: {fileID: 8300000, guid: b5d7b8b078c67e840b30cd36cb82e882, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

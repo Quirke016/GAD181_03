@@ -25,6 +25,11 @@ public class SS_ScoreBoard : MonoBehaviour
     public GameObject onScreenInstructions;
     SS_PlayerGroupControl playerGroupContral;
     public GameObject noteTextBlock;
+
+
+
+    
+
     void SetTexter(TextMeshPro textBase, int playerNum, int score, int cheatCount)
     {
         textBase.text = "Player " + playerNum + "\nScore: " + score + "\nPointInRow: " + cheatCount;
@@ -148,7 +153,7 @@ public class SS_ScoreBoard : MonoBehaviour
         
         onScreenText = onScreenTextObject.GetComponent<TextMeshProUGUI>();
 
-
+  
 
         inEndGame = false;
         StartCoroutine(InstructionScreen());

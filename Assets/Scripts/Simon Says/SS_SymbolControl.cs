@@ -12,11 +12,13 @@ public class SS_SymbolControl : MonoBehaviour
     Color statesColor = Color.black;
     TextMeshPro buttonName;
     //Transform symbal3D;
-
+    SS_SoundPlayer soundPlayer;
 
     // Start is called before the first frame update
     void OnEnable()
     {
+        soundPlayer = GetComponent<SS_SoundPlayer>();
+
         Transform childTransform = transform.Find("Text");
         //symbal3D = transform.Find("Sphere");
 
@@ -87,7 +89,7 @@ public class SS_SymbolControl : MonoBehaviour
         }
         else if (states == 1)
         {
-             statesColor = Color.white;
+             statesColor = Color.magenta;
             buttonName.text = "W";
         }
         else if (states == 2)
@@ -99,6 +101,11 @@ public class SS_SymbolControl : MonoBehaviour
         {
              statesColor = Color.red;
             buttonName.text = "D";
+        }
+        else if(states == 4)
+        {
+            statesColor = Color.white;
+            buttonName.text = "O";
         }
         else
         {
@@ -132,6 +139,8 @@ public class SS_SymbolControl : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
+
+        soundPlayer.PlaySymbolSound(states);
 
         timer = 0.0f;
 
