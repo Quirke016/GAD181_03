@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -13,16 +13,34 @@ public class SS_SymbolControl : MonoBehaviour
     public TextMeshPro buttonName;
     //Transform symbal3D;
     SS_SoundPlayer soundPlayer;
-
+    string[] arrows;
+    string[] keyNames;
+    string[] symbalNameUseing;
+    public bool isKeyNames;
     // Start is called before the first frame update
     void OnEnable()
     {
+        arrows = new string[4];
+        arrows[0] = "←";
+        arrows[1] = "↑";
+        arrows[2] = "→";
+        arrows[3] = "↓";
+
+        keyNames = new string[4];
+        keyNames[0] = "A";
+        keyNames[1] = "W";
+        keyNames[2] = "D";
+        keyNames[3] = "S";
+        
+
         soundPlayer = GetComponent<SS_SoundPlayer>();
 
         Transform childTransform = transform.Find("Text");
         //symbal3D = transform.Find("Sphere");
 
         buttonName = childTransform.GetComponent<TextMeshPro>();
+
+        isKeyNames = true;
     }
     
     public void DoAction(float duration)
@@ -34,7 +52,7 @@ public class SS_SymbolControl : MonoBehaviour
     }
 
 
-  
+    
    
 
     IEnumerator MoveToTarget(Vector2 target, float duration)
@@ -82,12 +100,20 @@ public class SS_SymbolControl : MonoBehaviour
 
     void Update()
     {
+        if (!isKeyNames)
+        {
+            symbalNameUseing = arrows;
+        }
+        else
+        {
+            symbalNameUseing = keyNames;
+        }
         if (states == 0)
         {
             statesColor = Color.yellow;
             if (isButtonLetter)
             {
-                buttonName.text = "A";
+                buttonName.text = symbalNameUseing[0];
             }
             
         }
@@ -96,7 +122,7 @@ public class SS_SymbolControl : MonoBehaviour
              statesColor = Color.magenta;
             if (isButtonLetter)
             {
-                buttonName.text = "W";
+                buttonName.text = symbalNameUseing[1];
             }
         }
         else if (states == 2)
@@ -104,7 +130,7 @@ public class SS_SymbolControl : MonoBehaviour
              statesColor = Color.blue;
             if (isButtonLetter)
             {
-                buttonName.text = "S";
+                buttonName.text = symbalNameUseing[2];
             }
         }
         else if (states == 3)
@@ -112,7 +138,7 @@ public class SS_SymbolControl : MonoBehaviour
              statesColor = Color.red;
             if (isButtonLetter)
             {
-                buttonName.text = "D";
+                buttonName.text = symbalNameUseing[3];
             }
         }
         else if(states == 4)

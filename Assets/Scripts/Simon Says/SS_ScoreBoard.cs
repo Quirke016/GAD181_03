@@ -30,9 +30,9 @@ public class SS_ScoreBoard : MonoBehaviour
 
     
 
-    void SetTexter(TextMeshPro textBase, int playerNum, int score, int cheatCount)
+    void SetTexter(TextMeshPro textBase, int playerNum, int score)
     {
-        textBase.text = "Player " + playerNum + "\nScore: " + score + "\nPointInRow: " + cheatCount;
+        textBase.text = "Player " + playerNum + "\nScore: " + score;
     }
 
     void GameSetup()
@@ -177,7 +177,7 @@ public class SS_ScoreBoard : MonoBehaviour
         {
             playerPoints[i] = playerControls[i].playerPoint;
             playerRowPoint[i] = playerControls[i].pointInRow;
-            SetTexter(scoreBoardList[i], i + 1, playerPoints[i], playerRowPoint[i]);
+            SetTexter(scoreBoardList[i], i + 1, playerPoints[i]);
         }
 
         if (!patternSoftWere.simonTurn && CheckIfCanNextRound() && roundCounter <= maxRound && !inIntro)
