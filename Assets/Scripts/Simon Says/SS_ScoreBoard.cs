@@ -64,7 +64,6 @@ public class SS_ScoreBoard : MonoBehaviour
             //textMesh.text = "got them";
             playerPoints[i] = playerControls[i].playerPoint;
 
-     
             scoreBoardList[i] = players[i].transform.Find("ScorboardText").GetComponent<TextMeshPro>();
         }
     }

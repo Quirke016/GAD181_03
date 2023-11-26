@@ -705,10 +705,7 @@ public class CG_Shuffle : MonoBehaviour
     /// </summary>
     /// <param name="duration"></param>
     void CupSwaper(float duration)
-
     {
-
-
 
         int[] movingCups = MoveCupCalaures();
 
@@ -911,7 +908,7 @@ public class CG_Shuffle : MonoBehaviour
     public TextMeshProUGUI statues;
 
     public TextMeshProUGUI roundTextNumber;
-    int RoundNumber;
+    public int RoundNumber;
     bool statuesBool;
 
     public GameObject cupPrefab;

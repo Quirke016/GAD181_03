@@ -10,7 +10,7 @@ public class SS_SymbolControl : MonoBehaviour
     [Range(0,4)]
     public int states = 0;
     Color statesColor = Color.black;
-    TextMeshPro buttonName;
+    public TextMeshPro buttonName;
     //Transform symbal3D;
     SS_SoundPlayer soundPlayer;
 
@@ -77,7 +77,7 @@ public class SS_SymbolControl : MonoBehaviour
 
 
     // Update is called once per frame
-
+    public bool isButtonLetter;
 
 
     void Update()
@@ -85,27 +85,43 @@ public class SS_SymbolControl : MonoBehaviour
         if (states == 0)
         {
             statesColor = Color.yellow;
-            buttonName.text = "A";
+            if (isButtonLetter)
+            {
+                buttonName.text = "A";
+            }
+            
         }
         else if (states == 1)
         {
              statesColor = Color.magenta;
-            buttonName.text = "W";
+            if (isButtonLetter)
+            {
+                buttonName.text = "W";
+            }
         }
         else if (states == 2)
         {
              statesColor = Color.blue;
-            buttonName.text = "S";
+            if (isButtonLetter)
+            {
+                buttonName.text = "S";
+            }
         }
         else if (states == 3)
         {
              statesColor = Color.red;
-            buttonName.text = "D";
+            if (isButtonLetter)
+            {
+                buttonName.text = "D";
+            }
         }
         else if(states == 4)
         {
             statesColor = Color.white;
-            buttonName.text = "O";
+            if (isButtonLetter)
+            {
+                buttonName.text = "O";
+            }
         }
         else
         {

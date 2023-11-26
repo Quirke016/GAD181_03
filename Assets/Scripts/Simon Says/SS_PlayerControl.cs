@@ -67,6 +67,7 @@ public class SS_PlayerControl : MonoBehaviour
             StartCoroutine(RightorWrong(true));
             //PlaySymbolSound(addColor);
             symbolContral.states = patternSoftWere.GetColorNumber(addColor);
+            symbolContral.buttonName.text = "" + pointInRow;
         }
         else
         {
@@ -74,6 +75,7 @@ public class SS_PlayerControl : MonoBehaviour
             pointInRow = 0;
             StartCoroutine(RightorWrong(false));
             symbolContral.states = 4;
+            
 
 
 
@@ -106,6 +108,7 @@ public class SS_PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        symbolContral.buttonName.text = "" + pointInRow;
         if (Input.GetKeyDown(KeyCode.L))
         {
             StartCoroutine(RightorWrong(true));
@@ -136,7 +139,8 @@ public class SS_PlayerControl : MonoBehaviour
                 else if (Input.GetKeyDown(KeyCode.LeftShift))
                 {
                     AddColorToplayerList(simonPattern[playerGuesss.Count]);
-                    playerPoint -= 1;
+                    playerPoint -= pointInRow;
+                    pointInRow -= 1;
                 }
             }
             else

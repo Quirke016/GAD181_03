@@ -107,7 +107,6 @@ MonoBehaviour:
   pointInRow: 0
   wrongSpite: {fileID: 1871074608, guid: cd0db8ea3cd87234097759328e175ca0, type: 3}
   rightSpite: {fileID: 1820537532, guid: cd0db8ea3cd87234097759328e175ca0, type: 3}
-  objectSoundPlayer: {fileID: 0}
   guessTime: 0
 --- !u!114 &3035660490913618678
 MonoBehaviour:
@@ -396,6 +395,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5671979379314911441, guid: 75f9cd5515058974188f8b698c2542db, type: 3}
       propertyPath: states
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5671979379314911441, guid: 75f9cd5515058974188f8b698c2542db, type: 3}
+      propertyPath: isButtonLetter
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8126829016515736167, guid: 75f9cd5515058974188f8b698c2542db, type: 3}

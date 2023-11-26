@@ -279,6 +279,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   states: 0
+  buttonName: {fileID: 0}
+  isButtonLetter: 1
 --- !u!222 &8075913970937051411
 CanvasRenderer:
   m_ObjectHideFlags: 0
