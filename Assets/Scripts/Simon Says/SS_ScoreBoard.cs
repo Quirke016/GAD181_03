@@ -125,7 +125,10 @@ public class SS_ScoreBoard : MonoBehaviour
     }
     IEnumerator EndGame()
     {
-        yield return new WaitForSeconds(1f);
+        while (!Input.anyKey)
+        {
+            yield return null;
+        }
         SceneManager.LoadScene(scene);
     }
 

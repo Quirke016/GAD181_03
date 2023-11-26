@@ -23,14 +23,14 @@ public class SS_SymbolControl : MonoBehaviour
         arrows = new string[4];
         arrows[0] = "←";
         arrows[1] = "↑";
-        arrows[2] = "→";
-        arrows[3] = "↓";
+        arrows[2] = "↓";
+        arrows[3] = "→";
 
         keyNames = new string[4];
         keyNames[0] = "A";
         keyNames[1] = "W";
-        keyNames[2] = "D";
-        keyNames[3] = "S";
+        keyNames[2] = "S";
+        keyNames[3] = "D";
         
 
         soundPlayer = GetComponent<SS_SoundPlayer>();
