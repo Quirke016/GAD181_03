@@ -125,6 +125,7 @@ public class SS_ScoreBoard : MonoBehaviour
     }
     IEnumerator EndGame()
     {
+        yield return new WaitForSeconds(3f);
         while (!Input.anyKey)
         {
             yield return null;
