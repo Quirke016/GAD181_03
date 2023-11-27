@@ -1,11 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using JetBrains.Annotations;
-using System.Reflection;
-using System.Runtime.CompilerServices;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
@@ -33,7 +27,7 @@ public class PlayerManager : MonoBehaviour
       playerTwoPoints.SetText("Player Two: " + playerTwoScore.ToString());
 
 
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.S))
     {
         Debug.Log("Player One is scoring!");
         playerOneScore++;

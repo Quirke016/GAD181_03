@@ -26,14 +26,15 @@ public class ClownManager : MonoBehaviour
 
 
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Ball")
-
+        if (other.CompareTag("Ball"))
         {
          scoringSystem.scoreCount += 1;
          Destroy(other.gameObject);
          Debug.Log("Score updated");
         }
     }
+
+    
 }
