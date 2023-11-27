@@ -18,8 +18,12 @@ public class SS_PatternGen : MonoBehaviour
     public GameObject Symbol;
 
     public bool simonTurn;
+    public TextMeshProUGUI countdownText;
 
+    bool RoundRuning;
+    public bool randomBag;
 
+    float turedrasion = 6;
 
     // Start is called before the first frame update
     void Start()
@@ -129,7 +133,7 @@ public class SS_PatternGen : MonoBehaviour
 
 
 
-    public TextMeshProUGUI countdownText;
+    
   
 
 
@@ -141,6 +145,8 @@ public class SS_PatternGen : MonoBehaviour
         simonStartBag.Add("blue");
         simonStartBag.Add("red");
     }
+
+
     public int GetColorNumber(string color)
     {
         for (int i = 0; i < simonStartBag.Count; i++)
@@ -209,7 +215,7 @@ public class SS_PatternGen : MonoBehaviour
         Debug.Log(string.Join(", ", strings));
     }
 
-    bool RoundRuning;
+    
     public void StartEnemyRound()
     {
         if (!RoundRuning)
@@ -223,9 +229,7 @@ public class SS_PatternGen : MonoBehaviour
         
     }
 
-    public bool randomBag;
-
-    float turedrasion = 6;
+    
 
     // Update is called once per frame
     void Update()

@@ -160,7 +160,10 @@ public class SS_SymbolControl : MonoBehaviour
         //if (states != -1) { MoveToRightSide(2); }
 
     }
-
+    public void ClickedTheButten(float duration)
+    {
+        StartCoroutine(ChangeSize(duration, new Vector3(1f, 1f, 1f), new Vector3(2f, 2f, 2f)));
+    }
 
     public IEnumerator ChangeSize(float duration, Vector3 originalScale, Vector3 targetSize)
     {

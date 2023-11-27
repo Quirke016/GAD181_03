@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 02179bc05f33eec4199dce56a7f716bc
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - playerPrefab: {fileID: 12405384027675515, guid: e549641e0d112af499f23457a8ae903c, type: 3}
+  - simonObject: {instanceID: 0}
+  - playerSymbol: {instanceID: 0}
+  - wrongSpite: {fileID: 1820537532, guid: cd0db8ea3cd87234097759328e175ca0, type: 3}
+  - rightSpite: {fileID: 1871074608, guid: cd0db8ea3cd87234097759328e175ca0, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

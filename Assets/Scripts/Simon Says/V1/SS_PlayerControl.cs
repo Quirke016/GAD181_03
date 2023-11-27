@@ -34,7 +34,6 @@ public class SS_PlayerControl : MonoBehaviour
         patternSoftWere = simonObject.GetComponent<SS_PatternGen>();
         simonPattern = patternSoftWere.simonPattern;
         symbolContral = playerSymbol.GetComponent<SS_SymbolControl>();
-        
         guessTime = true;
     }
 
