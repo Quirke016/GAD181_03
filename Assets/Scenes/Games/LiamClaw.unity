@@ -219,10 +219,7 @@ MonoBehaviour:
   grab: {fileID: 59835861}
   npcActive: 1
   npcPlaced: 0
-  npcUp: 0
-  npcDown: 0
-  npcLeft: 0
-  npcRight: 0
+  npcMoveInt: 0
   npcX: 1
   npcY: -2
 --- !u!212 &59835863
@@ -343,10 +340,7 @@ MonoBehaviour:
   grab: {fileID: 223270882}
   npcActive: 1
   npcPlaced: 0
-  npcUp: 0
-  npcDown: 0
-  npcLeft: 0
-  npcRight: 0
+  npcMoveInt: 0
   npcX: 0
   npcY: 4
 --- !u!212 &223270884
@@ -557,10 +551,7 @@ MonoBehaviour:
   grab: {fileID: 445962046}
   npcActive: 1
   npcPlaced: 0
-  npcUp: 0
-  npcDown: 0
-  npcLeft: 0
-  npcRight: 0
+  npcMoveInt: 0
   npcX: 2
   npcY: 2
 --- !u!212 &445962048
@@ -726,10 +717,7 @@ MonoBehaviour:
   grab: {fileID: 713459610}
   npcActive: 1
   npcPlaced: 0
-  npcUp: 0
-  npcDown: 0
-  npcLeft: 0
-  npcRight: 0
+  npcMoveInt: 0
   npcX: 0
   npcY: 1
 --- !u!212 &713459612
@@ -900,7 +888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1047394148}
   playerRenderer: {fileID: 1047394149}
-  moveSpeed: 0.013
+  moveSpeed: 0.011
   playerX: -6.5
   playerY: 2.5
   gameManager: {fileID: 1712550263}
@@ -1074,10 +1062,7 @@ MonoBehaviour:
   grab: {fileID: 1164406651}
   npcActive: 1
   npcPlaced: 0
-  npcUp: 0
-  npcDown: 0
-  npcLeft: 0
-  npcRight: 0
+  npcMoveInt: 0
   npcX: -7
   npcY: -4
 --- !u!212 &1164406653
@@ -1243,10 +1228,7 @@ MonoBehaviour:
   grab: {fileID: 1403316484}
   npcActive: 1
   npcPlaced: 0
-  npcUp: 0
-  npcDown: 0
-  npcLeft: 0
-  npcRight: 0
+  npcMoveInt: 0
   npcX: -4
   npcY: -4
 --- !u!212 &1403316486
@@ -1551,10 +1533,7 @@ MonoBehaviour:
   grab: {fileID: 1854718359}
   npcActive: 1
   npcPlaced: 0
-  npcUp: 0
-  npcDown: 0
-  npcLeft: 0
-  npcRight: 0
+  npcMoveInt: 0
   npcX: 4
   npcY: -4
 --- !u!212 &1854718361
@@ -1720,11 +1699,8 @@ MonoBehaviour:
   grab: {fileID: 1859815605}
   npcActive: 1
   npcPlaced: 0
-  npcUp: 0
-  npcDown: 0
-  npcLeft: 0
-  npcRight: 0
-  npcX: 3
+  npcMoveInt: 0
+  npcX: 2.2
   npcY: -2
 --- !u!212 &1859815607
 SpriteRenderer:
