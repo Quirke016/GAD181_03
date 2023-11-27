@@ -8,6 +8,10 @@ public class ClawNPC : MonoBehaviour
     public ClawNPCGrab grab;
     public bool npcActive = true;
     public bool npcPlaced = false;
+    public bool npcUp;
+    public bool npcDown;
+    public bool npcLeft;
+    public bool npcRight;
     public float npcX;
     public float npcY;
     private float npcSpeed = 0.001f;
@@ -36,6 +40,28 @@ public class ClawNPC : MonoBehaviour
             npcX = player.transform.position.x;
             npcY = player.transform.position.y;
             Debug.Log("npc held");
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) && grab.isInTrigger == true && player.inZone == true)
+        {
+            npcPlaced = true;
+        }
+
+        if (npcUp == true)
+        {
+            NPCMoveUp();
+        }
+        else if (npcDown == true)
+        {
+            NPCMoveDown();
+        }
+        else if (npcLeft == true)
+        {
+            NPCMoveLeft();
+        }
+        else if (npcRight == true)
+        {
+            NPCMoveRight();
         }
     }
 

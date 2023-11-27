@@ -35,7 +35,6 @@ public class ClawGameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && player.npcGrab == true && player.inZone == true)
         {
             player.npcGrab = false;
-            npc.npcPlaced = true;
             Debug.Log("npc dropped");
         }
     }
