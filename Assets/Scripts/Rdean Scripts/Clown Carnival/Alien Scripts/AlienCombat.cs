@@ -16,7 +16,8 @@ public CombatStatsManager enemyAtm;
     private void OnTriggerEnter2D(Collider2D col) //  on trigger function that deals damage to the player and destroys the alien upon contact
     
         {
-            if(transform.position.y<=0)
+            Debug.Log(col.gameObject.name + " blah");
+            if(transform.position.y<=0 && (col.gameObject.name == "DestroyBottom"));
             
             {
             Destroy(this.gameObject); // destroys game object if its less than or equal to 0 on the y axis

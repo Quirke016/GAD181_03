@@ -15,7 +15,7 @@ public class timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timernumber = 60; // sets the timer of the minigame to 60 seconds
+        timernumber = 40; // sets the timer of the minigame to 60 seconds
     }
 
     // Update is called once per frame
@@ -43,9 +43,5 @@ public class timer : MonoBehaviour
             
         }
 
-        else
-        {
-            Debug.Log("Check game condition is not working"); // debug log to check to see if the function is working
-        }
     }
 }
