@@ -146,7 +146,7 @@ public class SS2_PattenGen : MonoBehaviour
     public void StartEnemyRound()
     {
         AddNewColorToPatten(randomBag);
-        StartCoroutine(ShowPattern(1, 2));
+        StartCoroutine(ShowPattern(4, 1));
 
     }
     void Update()

@@ -69,17 +69,50 @@ public class SS2_ScoreBoard2 : MonoBehaviour
             //COME BACK TOO LATER
         }
     }
+    public GameObject betweenScreen;
 
+    public GameObject backGround;
+    public GameObject spotLight;
 
-    void StartEnemyRound()
+    void SpoitLightOnSimon(bool isOn)
     {
+        //betweenScreen.SetActive(isOn);
         for (int i = 0; i < numberOfPlayers; i++)
         {
-
-            playerGroupContral.GuessReset();
+            players[i].gameObject.SetActive(!isOn);
 
         }
+        spotLight.SetActive(isOn);
+        //simonObject.SetActive(isOn);
+    }
+
+    IEnumerator StartEnemyRound()
+    {
+        playerGroupContral.GuessReset();
+        yield return new WaitForSeconds(0.5f);
+        SpoitLightOnSimon(true);
+        Debug.Log("1234Intrston On " + enemyRoundStarting);
+        
+        /**/
+        Debug.Log("1234Intrston off " + enemyRoundStarting);
+        
+        /*for (int i = 0; i < numberOfPlayers; i++)
+        {
+
+            
+
+        }*/
+
+        
         patternSoftWere.StartEnemyRound();
+        yield return new WaitForSeconds(0.1f);
+        while (patternSoftWere.simonTurn)
+        {
+            yield return null;
+        }
+
+        SpoitLightOnSimon(false);
+        enemyRoundStarting = false;
 
     }
 
@@ -152,14 +185,27 @@ public class SS2_ScoreBoard2 : MonoBehaviour
         return false;
     }*/
 
+    List<bool> testListBool()
+    {
 
+        List<bool> testingListBool2 = new List<bool>();
+        testingListBool2.Add(!patternSoftWere.simonTurn);
+        testingListBool2.Add(playerGroupContral.guessTimeTotal);
+        testingListBool2.Add(roundCounter <= maxRound);
+
+        testingListBool2.Add(!inIntro);
+        testingListBool2.Add(!enemyRoundStarting);
+
+        return testingListBool2;
+    }
     void Start()
     {
         inIntro = true;
-
+        
+        
         onScreenText = onScreenTextObject.GetComponent<TextMeshProUGUI>();
 
-
+        enemyRoundStarting = false;
 
         inEndGame = false;
         StartCoroutine(InstructionScreen());
@@ -176,6 +222,11 @@ public class SS2_ScoreBoard2 : MonoBehaviour
     bool inEndGame;
     [Range(1, 10)]
     public int maxRound;
+
+    bool enemyRoundStarting;
+
+    string ttest;
+
     // Update is called once per frame
     void Update()
     {
@@ -187,16 +238,19 @@ public class SS2_ScoreBoard2 : MonoBehaviour
             // COME BACK LATER
         }
 
+        playerGroupContral.CheckIfCanNextRound();
 
+        // Debug.Log();
 
-       // Debug.Log();
-
-        if (!patternSoftWere.simonTurn && playerGroupContral.guessTimeTotal && roundCounter <= maxRound && !inIntro)
+        if (!patternSoftWere.simonTurn && playerGroupContral.guessTimeTotal && roundCounter <= maxRound && !inIntro && !enemyRoundStarting)
         {
-            StartEnemyRound();
+            Debug.Log("test right wrong ---------- "+ ttest);
+            enemyRoundStarting = true;
+
+            StartCoroutine(StartEnemyRound());
             roundCounter += 1;
         }
-
+        ttest = string.Join(", ", testListBool().ToArray());
 
         Debug.Log("roundcount is " + roundCounter);
         if (!(roundCounter <= maxRound) && !inEndGame && playerGroupContral.guessTimeTotal)

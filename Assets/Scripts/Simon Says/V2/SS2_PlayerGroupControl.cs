@@ -56,6 +56,8 @@ public class SS2_PlayerGroupControl : MonoBehaviour
             {
                 Debug.Log("error the postion is null");
             }
+
+           // Debug.Log("Seting " + players[i].name+ " loction to "+ new Vector2(((screenSize / numberOfPlayers) * ((i + 1) - (numberOfPlayers * 0.5f + 0.5f))), -3f))
             players[i].transform.position = new Vector2(((screenSize / numberOfPlayers) * ((i + 1) - (numberOfPlayers * 0.5f + 0.5f))), -3f);
         }
     }
@@ -158,6 +160,7 @@ public class SS2_PlayerGroupControl : MonoBehaviour
         }
         else
         {
+            Debug.Log("player "+ playerNumber + " there guesss are "+ string.Join(", ", playerGuesss[playerNumber].ToArray()));
             //playerGuesss[numberOfPlayers] = new string[];
             guessTime[playerNumber] = false;
         }
@@ -168,10 +171,12 @@ public class SS2_PlayerGroupControl : MonoBehaviour
         for (int i = 0; i < guessTime.Length; i++)
         {
             guessTime[i] = true;
+            playerGuesss[i].Clear();
         }
+
     }
 
-    void CheckIfCanNextRound()
+    public void CheckIfCanNextRound()
     {
         int count = 0;
         for(int i = 0; i < guessTime.Length;i++) 
@@ -198,12 +203,19 @@ public class SS2_PlayerGroupControl : MonoBehaviour
     void Start()
     {
         SetUpObject();
-        
+        screenSize = 20;
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            SortPlayerLoction();
+        }
+
 
         CheckIfCanNextRound();
         if (gameBeging)
