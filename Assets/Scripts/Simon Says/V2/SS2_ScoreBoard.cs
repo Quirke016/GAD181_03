@@ -71,26 +71,131 @@ public class SS2_ScoreBoard2 : MonoBehaviour
     }
     public GameObject betweenScreen;
 
+    Color backGroundColor;
     public GameObject backGround;
     public GameObject spotLight;
 
-    void SpoitLightOnSimon(bool isOn)
+
+    private IEnumerator MoveObjectCoroutine(GameObject objectToMove, Vector3 newPosition, float duration, float cameraSize, Color colorChange, float lightChange,float angleChange,bool isOn)
+    {
+        
+
+        Transform objectToMoveTransform = objectToMove.transform;
+        Vector3 startingPosition = objectToMoveTransform.position;
+        float elapsedTime = 0f;
+        Camera cameraObject = objectToMove.GetComponent<Camera>();
+
+        MeshRenderer meshRendererBG = backGround.GetComponent<MeshRenderer>();
+        Color startColor = meshRendererBG.material.color;
+        float lastDuration = duration / 5;
+        float firstDuration = duration - lastDuration;
+
+
+        float cameraStartSize = cameraObject.orthographicSize;
+        while (elapsedTime < firstDuration)
+        {
+            float t = elapsedTime / firstDuration;
+
+            objectToMoveTransform.position = Vector3.Lerp(startingPosition, newPosition, t);
+            cameraObject.orthographicSize = Mathf.Lerp(cameraStartSize, cameraSize, t);
+            meshRendererBG.material.SetColor("_Color", Color.Lerp(startColor, colorChange, t));
+           /* lightSpotForChange.range = Mathf.Lerp(lightStartRange, lightChange, t);
+            lightSpotForChange.spotAngle */
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        objectToMoveTransform.position = newPosition;
+        cameraObject.orthographicSize = cameraSize;
+        spotLight.SetActive(isOn);
+        Light lightSpotForChange = spotLight.GetComponent<Light>();
+        float lightStartRange = lightSpotForChange.range;
+        float lightStartAngle = lightSpotForChange.spotAngle;
+        elapsedTime = 0f;
+        while (elapsedTime < lastDuration)
+        {
+            float t = elapsedTime / lastDuration;
+
+            
+            lightSpotForChange.range = Mathf.Lerp(lightStartRange, lightChange, t);
+            lightSpotForChange.spotAngle = Mathf.Lerp(lightStartAngle, angleChange, t);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+
+
+
+        
+        
+    }
+
+    /* private IEnumerator MoveObjectCoroutine(GameObject objectToMove, Vector3 newPosition, float duration, float cameraSize)
+     {
+
+         Transform objectToMoveTransform = objectToMove.transform;
+         Vector3 startingPosition = objectToMoveTransform.position;
+         float elapsedTime = 0f;
+
+         //float cameraStartSize = cameraObject.orthographicSize;
+         while (elapsedTime < duration)
+         {
+             float t = elapsedTime / duration;
+             Debug.Log("Test1243 Old " + objectToMoveTransform.position.y + " new " + Vector3.Lerp(newPosition, startingPosition, t).y);
+             objectToMoveTransform.position = Vector3.Lerp(startingPosition, newPosition , t);
+
+             elapsedTime += Time.deltaTime;
+             yield return null;
+         }
+         objectToMoveTransform.position = newPosition;
+
+
+     }*/
+
+    void SpoitLightOnSimon(bool isOn, float duration)
     {
         //betweenScreen.SetActive(isOn);
-        for (int i = 0; i < numberOfPlayers; i++)
+        /*for (int i = 0; i < numberOfPlayers; i++)
         {
             players[i].gameObject.SetActive(!isOn);
 
+        }*/
+
+        if (!isOn)
+        {
+
+
+
+            //backGround.GetComponent<MeshRenderer>().material.SetColor("_Color", backGroundColor);
+            spotLight.SetActive(isOn);
+            StartCoroutine(MoveObjectCoroutine(mainCamera, startLoctionCamera, duration, 5, backGroundColor,0f,0f, isOn));
+
+            //mainCamera.transform.position = startLoctionCamera;
+
+
+
         }
-        spotLight.SetActive(isOn);
-        //simonObject.SetActive(isOn);
+        else
+        {
+
+            //backGround.GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(0, 0, 0));
+            //mainCamera.transform.position = closeLoctionCamera;
+
+            StartCoroutine(MoveObjectCoroutine(mainCamera,  closeLoctionCamera, duration, 3, new Color(0, 0, 0),10f,35f, isOn));
+        }
+
+        
+        //.material = materialBackGround;
+        
+        //backGround.SetActive(isOn);
     }
 
-    IEnumerator StartEnemyRound()
+    IEnumerator StartEnemyRound(float zoomDuration=1)
     {
         playerGroupContral.GuessReset();
-        yield return new WaitForSeconds(0.5f);
-        SpoitLightOnSimon(true);
+        yield return new WaitForSeconds(zoomDuration);
+        SpoitLightOnSimon(true, zoomDuration);
+        yield return new WaitForSeconds(zoomDuration);
+        
         Debug.Log("1234Intrston On " + enemyRoundStarting);
         
         /**/
@@ -111,9 +216,9 @@ public class SS2_ScoreBoard2 : MonoBehaviour
             yield return null;
         }
 
-        SpoitLightOnSimon(false);
+        SpoitLightOnSimon(false, zoomDuration);
         enemyRoundStarting = false;
-
+        playerGroupContral.GuessReset();
     }
 
 
@@ -201,8 +306,8 @@ public class SS2_ScoreBoard2 : MonoBehaviour
     void Start()
     {
         inIntro = true;
-        
-        
+
+        backGroundColor = backGround.GetComponent<MeshRenderer>().material.color;
         onScreenText = onScreenTextObject.GetComponent<TextMeshProUGUI>();
 
         enemyRoundStarting = false;
@@ -215,6 +320,8 @@ public class SS2_ScoreBoard2 : MonoBehaviour
         playerGroupContral = GetComponent<SS2_PlayerGroupControl>();
         endBarsContol = GetComponent<SS_CreateBars>();
         patternSoftWere = simonObject.GetComponent<SS2_PattenGen>();
+        startLoctionCamera = mainCamera.transform.position;
+        closeLoctionCamera = tragetLoctionCamera.transform.position;
     }
 
     [SerializeField] string scene;
@@ -226,10 +333,24 @@ public class SS2_ScoreBoard2 : MonoBehaviour
     bool enemyRoundStarting;
 
     string ttest;
+    public GameObject mainCamera;
+    public GameObject tragetLoctionCamera;
+    Vector3 startLoctionCamera;
+    Vector3 closeLoctionCamera;
 
     // Update is called once per frame
     void Update()
     {
+
+       /* if (Input.GetKeyDown(KeyCode.G))
+        {
+             SpoitLightOnSimon(true);
+        }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            SpoitLightOnSimon(false);
+        }*/
+
         //Debug.Log("checking if it work " + CheckIfCanNextRound());
         for (int i = 0; i < numberOfPlayers; i++)
         {
@@ -261,5 +382,7 @@ public class SS2_ScoreBoard2 : MonoBehaviour
 
             StartCoroutine(EndGame());
         }
+
+    
     }
 }

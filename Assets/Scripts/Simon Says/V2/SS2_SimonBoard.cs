@@ -9,18 +9,26 @@ public class SS2_SimonBoard : MonoBehaviour
     public GameObject[] symbols;
 
     public SS_SymbolControl[] symbolControls;
-    IEnumerator WrongAswer()
+    
+    public void SetCenter(string setTo)
+    {
+        symbolControls[4].centerSymbolName = setTo;
+    }
+
+    public IEnumerator WrongAswer()
     {
         symbols[4].SetActive(true);
         SymbolClicked(4);
         yield return new WaitForSeconds(1f);
-        symbols[4].SetActive(false);
+        //symbols[4].SetActive(false);
 
     }
 
     public void SymbolClicked(int buttonNumber, float duration = 1)
     {
+        
         symbolControls[buttonNumber].ClickedTheButten(duration);
+
     }
 
     // Start is called before the first frame update
@@ -35,7 +43,7 @@ public class SS2_SimonBoard : MonoBehaviour
                 Debug.Log("Error the symbol contorl cant be refenced "+ i);
             }
         }
-        symbols[4].SetActive(false);
+        //symbols[4].SetActive(false);
     }
 
     // Update is called once per frame

@@ -102,6 +102,8 @@ public class SS2_PlayerGroupControl : MonoBehaviour
 
     void AddColorToplayerList(string addColor, int playerNumber)
     {
+
+        Debug.Log("test2 addColor " + addColor + " SimonColor " + simonPattern[playerGuesss[playerNumber].Count]);
         if (addColor == simonPattern[playerGuesss[playerNumber].Count])
         {
             if (pointInRows[playerNumber] < 10) { pointInRows[playerNumber] += 1; }
@@ -118,7 +120,7 @@ public class SS2_PlayerGroupControl : MonoBehaviour
             Debug.Log("not the right color");
             pointInRows[playerNumber] = 0;
             StartCoroutine(RightorWrong(false, playerNumber));
-            playersBasicConrtols[playerNumber].SymbolClicked(patternSoftWere.GetColorNumber(addColor), 1);
+            StartCoroutine(playersBasicConrtols[playerNumber].WrongAswer());
         }
 
         playerGuesss[playerNumber].Add(addColor);
@@ -132,6 +134,8 @@ public class SS2_PlayerGroupControl : MonoBehaviour
 
     void InputStuff(int playerNumber)
     {
+        playersBasicConrtols[playerNumber].SetCenter(simonPattern.Count-playerGuesss[playerNumber].Count + "");
+
         if (playerGuesss[playerNumber].Count < simonPattern.Count)
         {
 
@@ -235,10 +239,15 @@ public class SS2_PlayerGroupControl : MonoBehaviour
         {
             for (int i = 0; i < numberOfPlayers; i++)
             {
+
                 if (guessTime[i])
                 {
                     InputStuff(i);
                 }
+               /* else
+                {
+                    playersBasicConrtols[i].SetCenter("0");
+                }*/
                 
             }
             

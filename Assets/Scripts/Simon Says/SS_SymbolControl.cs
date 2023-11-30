@@ -17,6 +17,8 @@ public class SS_SymbolControl : MonoBehaviour
     string[] keyNames;
     string[] symbalNameUseing;
     public bool isKeyNames;
+
+    public string centerSymbolName="0";
     // Start is called before the first frame update
     void OnEnable()
     {
@@ -146,7 +148,7 @@ public class SS_SymbolControl : MonoBehaviour
             statesColor = Color.white;
             if (isButtonLetter)
             {
-                buttonName.text = "O";
+                buttonName.text = centerSymbolName;
             }
         }
         else
@@ -178,7 +180,8 @@ public class SS_SymbolControl : MonoBehaviour
         {
             float t = timer / durationForEach;
             transform.localScale = Vector3.Lerp(originalScale, targetSize, t);
-            lightObject.range = transform.localScale.x * 5f;
+            lightObject.range = Mathf.Lerp(0,  15f, t);
+            
 
 
             timer += Time.deltaTime;
@@ -194,7 +197,7 @@ public class SS_SymbolControl : MonoBehaviour
             float t = timer / durationForEach;
             transform.localScale = Vector3.Lerp(originalScale * 2.0f, originalScale, t);
             timer += Time.deltaTime;
-            lightObject.range = transform.localScale.x * 5f;
+            lightObject.range = Mathf.Lerp(15f, 0, t);
             yield return null;
         }
     }
