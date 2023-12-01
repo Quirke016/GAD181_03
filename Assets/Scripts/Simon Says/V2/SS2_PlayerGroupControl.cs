@@ -15,6 +15,93 @@ public class SS2_PlayerGroupControl : MonoBehaviour
     public bool gameBeging;
     public GameObject simonObject;
 
+    KeyCode[][] playerControlsKeys;
+
+    string[][] stringKeyNames;
+
+    void SetUpkeys()
+    {
+        playerControlsKeys = new KeyCode[4][];
+
+        for (int i = 0;  i < 4; i++) 
+        {
+            playerControlsKeys[i] = new KeyCode[4];
+
+        }
+        stringKeyNames = new string[4][];
+        for (int i = 0; i < 4; i++)
+        {
+            stringKeyNames[i] = new string[4];
+
+        }
+
+        //Player 1 controllers
+        playerControlsKeys[0][0] = KeyCode.A; // left
+        playerControlsKeys[0][1] = KeyCode.D; // right
+        playerControlsKeys[0][2] = KeyCode.S; // down
+        playerControlsKeys[0][3] = KeyCode.W; // up
+
+        stringKeyNames[0][0] = "A"; // left
+        stringKeyNames[0][1] = "W"; // up
+        stringKeyNames[0][2] = "S"; // down
+        stringKeyNames[0][3] = "D"; // right
+
+
+
+        //Player 2 controllers
+        playerControlsKeys[1][0] = KeyCode.LeftArrow;
+        playerControlsKeys[1][1] = KeyCode.RightArrow; 
+        playerControlsKeys[1][2] = KeyCode.DownArrow;
+        playerControlsKeys[1][3] = KeyCode.UpArrow;
+
+        stringKeyNames[1][0] = "\"<\"";
+        stringKeyNames[1][1] = "\"/\\\""; // up
+        stringKeyNames[1][2] = "\"\\/\""; // down
+        stringKeyNames[1][3] = "\">\""; // right
+
+
+
+
+
+
+        //Player 3 controllers
+        playerControlsKeys[2][0] = KeyCode.G; //left
+        playerControlsKeys[2][1] = KeyCode.J; // right
+        playerControlsKeys[2][2] = KeyCode.H; //down
+        playerControlsKeys[2][3] = KeyCode.Y;
+
+        stringKeyNames[2][0] = "G";
+        stringKeyNames[2][1] = "Y"; // up
+        stringKeyNames[2][2] = "H"; // down
+        stringKeyNames[2][3] = "J"; // right
+
+
+        //Player 4 controllers
+        playerControlsKeys[3][0] = KeyCode.L; // left
+        playerControlsKeys[3][1] = KeyCode.Quote; // right
+        playerControlsKeys[3][2] = KeyCode.Semicolon; // down
+        playerControlsKeys[3][3] = KeyCode.P; // up
+
+
+        stringKeyNames[3][0] = "L"; // left
+        stringKeyNames[3][1] = "P"; // up
+        stringKeyNames[3][2] = ";"; // down
+        stringKeyNames[3][3] = "'"; // right
+    }
+
+    void SetButtonNames()
+    {
+        for (int i = 0;  i < numberOfPlayers; i++)
+        {
+            for (int j = 0; j < playerControlsKeys[i].Length; j++)
+            {
+
+                playersBasicConrtols[i].SetButtonNumberToText(j, stringKeyNames[i][j]);
+            }
+            
+        }
+    }
+
     List<int[]> keyControls = new List<int[]>();
 
 
@@ -139,19 +226,19 @@ public class SS2_PlayerGroupControl : MonoBehaviour
         if (playerGuesss[playerNumber].Count < simonPattern.Count)
         {
 
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(playerControlsKeys[playerNumber][0]))
             {
                 AddColorToplayerList("yellow", playerNumber);
             }
-            else if (Input.GetKeyDown(KeyCode.D))
+            else if (Input.GetKeyDown(playerControlsKeys[playerNumber][1]))
             {
                 AddColorToplayerList("red", playerNumber);
             }
-            else if (Input.GetKeyDown(KeyCode.S))
+            else if (Input.GetKeyDown(playerControlsKeys[playerNumber][2]))
             {
                 AddColorToplayerList("blue", playerNumber);
             }
-            else if (Input.GetKeyDown(KeyCode.W))
+            else if (Input.GetKeyDown(playerControlsKeys[playerNumber][3]))
             {
                 AddColorToplayerList("purple", playerNumber);
             }
@@ -208,19 +295,19 @@ public class SS2_PlayerGroupControl : MonoBehaviour
     {
         SetUpObject();
         screenSize = 20;
-
+        SetUpkeys();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
+        /*if (Input.GetKeyDown(KeyCode.L))
         {
             SortPlayerLoction();
-        }
+        }*/
 
-
+        SetButtonNames();
         CheckIfCanNextRound();
         if (gameBeging)
         {

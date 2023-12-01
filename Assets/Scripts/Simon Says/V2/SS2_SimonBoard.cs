@@ -31,6 +31,11 @@ public class SS2_SimonBoard : MonoBehaviour
 
     }
 
+    public void SetButtonNumberToText(int buttonNumber,string setTo)
+    {
+        symbolControls[buttonNumber].symbolName = setTo;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

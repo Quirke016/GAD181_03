@@ -151,11 +151,11 @@ public class SS2_PattenGen : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        /*if (Input.GetKeyDown(KeyCode.G))
         {
             StartEnemyRound();
 
-        }
+        }*/
     }
 }
 

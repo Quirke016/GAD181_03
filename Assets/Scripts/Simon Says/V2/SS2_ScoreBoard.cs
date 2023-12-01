@@ -233,6 +233,7 @@ public class SS2_ScoreBoard2 : MonoBehaviour
         onScreenTextObject.SetActive(false);
     }
 
+    public GameObject onScreenInstructionsControls;
     IEnumerator InstructionScreen()
     {
         onScreenInstructions.SetActive(true);
@@ -240,7 +241,16 @@ public class SS2_ScoreBoard2 : MonoBehaviour
         {
             yield return null;
         }
+
+        yield return new WaitForSeconds(0.1f);
         onScreenInstructions.SetActive(false);
+        onScreenInstructionsControls.SetActive(true);
+        while (!Input.anyKey)
+        {
+            yield return null;
+        }
+        onScreenInstructionsControls.SetActive(false);
+
         StartCoroutine(StartGame());
     }
     IEnumerator StartGame()

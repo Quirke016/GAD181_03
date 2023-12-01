@@ -33,7 +33,7 @@ public class SS_SymbolControl : MonoBehaviour
         keyNames[1] = "W";
         keyNames[2] = "S";
         keyNames[3] = "D";
-        
+        //isButtonLetter = false;
 
         soundPlayer = GetComponent<SS_SoundPlayer>();
 
@@ -98,7 +98,7 @@ public class SS_SymbolControl : MonoBehaviour
 
     // Update is called once per frame
     public bool isButtonLetter;
-
+    public string symbolName;
 
     void Update()
     {
@@ -115,7 +115,7 @@ public class SS_SymbolControl : MonoBehaviour
             statesColor = Color.yellow;
             if (isButtonLetter)
             {
-                buttonName.text = symbalNameUseing[0];
+                buttonName.text = symbolName;
             }
             
         }
@@ -124,7 +124,7 @@ public class SS_SymbolControl : MonoBehaviour
              statesColor = Color.magenta;
             if (isButtonLetter)
             {
-                buttonName.text = symbalNameUseing[1];
+                buttonName.text = symbolName;
             }
         }
         else if (states == 2)
@@ -132,7 +132,7 @@ public class SS_SymbolControl : MonoBehaviour
              statesColor = Color.blue;
             if (isButtonLetter)
             {
-                buttonName.text = symbalNameUseing[2];
+                buttonName.text = symbolName;
             }
         }
         else if (states == 3)
@@ -140,7 +140,7 @@ public class SS_SymbolControl : MonoBehaviour
              statesColor = Color.red;
             if (isButtonLetter)
             {
-                buttonName.text = symbalNameUseing[3];
+                buttonName.text = symbolName;
             }
         }
         else if(states == 4)
