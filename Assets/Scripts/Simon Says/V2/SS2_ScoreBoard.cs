@@ -35,6 +35,7 @@ public class SS2_ScoreBoard2 : MonoBehaviour
         textBase.text = "Player " + playerNum + "\nScore: " + score;
     }
 
+
     void GameSetup()
     {
 
@@ -65,8 +66,8 @@ public class SS2_ScoreBoard2 : MonoBehaviour
             playerPoints = playerGroupContral.playerPoint;
             playerRowPoint = playerGroupContral.pointInRows;
 
-            //scoreBoardList[i] = players[i].transform.Find("ScorboardText").GetComponent<TextMeshPro>();
-            //COME BACK TOO LATER
+            scoreBoardList[i] = players[i].transform.Find("ScorboardText").GetComponent<TextMeshPro>();
+
         }
     }
     public GameObject betweenScreen;
@@ -234,6 +235,7 @@ public class SS2_ScoreBoard2 : MonoBehaviour
     }
 
     public GameObject onScreenInstructionsControls;
+    public GameObject onScreenInstructionsPlayerModel;
     IEnumerator InstructionScreen()
     {
         onScreenInstructions.SetActive(true);
@@ -242,8 +244,17 @@ public class SS2_ScoreBoard2 : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.25f);
         onScreenInstructions.SetActive(false);
+
+        onScreenInstructionsPlayerModel.SetActive(true);
+        while (!Input.anyKey)
+        {
+            yield return null;
+        }
+        yield return new WaitForSeconds(0.25f);
+        onScreenInstructionsPlayerModel.SetActive(false);
+
         onScreenInstructionsControls.SetActive(true);
         while (!Input.anyKey)
         {
@@ -365,8 +376,8 @@ public class SS2_ScoreBoard2 : MonoBehaviour
         for (int i = 0; i < numberOfPlayers; i++)
         {
       
-            //SetTexter(scoreBoardList[i], i + 1, playerPoints[i]);
-            // COME BACK LATER
+            SetTexter(scoreBoardList[i], i + 1, playerPoints[i]);
+
         }
 
         playerGroupContral.CheckIfCanNextRound();

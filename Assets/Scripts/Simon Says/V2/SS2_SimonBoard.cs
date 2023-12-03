@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using static UnityEditor.VersionControl.Asset;
 
+
 public class SS2_SimonBoard : MonoBehaviour
 {
     public GameObject[] symbols;

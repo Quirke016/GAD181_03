@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using UnityEngine;
+using TMPro;
 
 public class SS2_PlayerGroupControl : MonoBehaviour
 {
@@ -54,10 +55,10 @@ public class SS2_PlayerGroupControl : MonoBehaviour
         playerControlsKeys[1][2] = KeyCode.DownArrow;
         playerControlsKeys[1][3] = KeyCode.UpArrow;
 
-        stringKeyNames[1][0] = "\"<\"";
-        stringKeyNames[1][1] = "\"/\\\""; // up
-        stringKeyNames[1][2] = "\"\\/\""; // down
-        stringKeyNames[1][3] = "\">\""; // right
+        stringKeyNames[1][0] = "<";
+        stringKeyNames[1][1] = "/\\"; // up
+        stringKeyNames[1][2] = "\\/"; // down
+        stringKeyNames[1][3] = ">"; // right
 
 
 
@@ -123,7 +124,13 @@ public class SS2_PlayerGroupControl : MonoBehaviour
         players.Add(Instantiate(playerPrefab));
         playersBasicConrtols.Add(players[players.Count - 1].GetComponent<SS2_SimonBoard>());
 
+        
+
+
         numberOfPlayers = players.Count;
+
+        TextMeshPro playerNumber = players[players.Count - 1].transform.Find("ScorboardText").GetComponent<TextMeshPro>();
+        playerNumber.text = "Player " + numberOfPlayers;
 
         playerGuesss = new List<string>[numberOfPlayers];
         playerPoint = new int[numberOfPlayers];
@@ -145,7 +152,7 @@ public class SS2_PlayerGroupControl : MonoBehaviour
             }
 
            // Debug.Log("Seting " + players[i].name+ " loction to "+ new Vector2(((screenSize / numberOfPlayers) * ((i + 1) - (numberOfPlayers * 0.5f + 0.5f))), -3f))
-            players[i].transform.position = new Vector2(((screenSize / numberOfPlayers) * ((i + 1) - (numberOfPlayers * 0.5f + 0.5f))), -3f);
+            players[i].transform.position = new Vector2(((screenSize / numberOfPlayers) * ((i + 1) - (numberOfPlayers * 0.5f + 0.5f))), -2f);
         }
     }
 
@@ -311,7 +318,7 @@ public class SS2_PlayerGroupControl : MonoBehaviour
         CheckIfCanNextRound();
         if (gameBeging)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) &&  numberOfPlayers <= 4)
             {
                 CreatePlayer();
                 SortPlayerLoction();

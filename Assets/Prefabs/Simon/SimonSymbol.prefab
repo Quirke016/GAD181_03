@@ -280,7 +280,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   states: 0
   buttonName: {fileID: 0}
+  isKeyNames: 0
+  centerSymbolName: 0
   isButtonLetter: 1
+  symbolName: 
 --- !u!222 &8075913970937051411
 CanvasRenderer:
   m_ObjectHideFlags: 0
