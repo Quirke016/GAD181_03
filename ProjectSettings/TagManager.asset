@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - Coin
+  - Ball
+  - Destroy
+  - Block
   layers:
   - Default
   - TransparentFX
