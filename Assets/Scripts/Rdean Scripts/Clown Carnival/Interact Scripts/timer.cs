@@ -1,12 +1,16 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class timer : MonoBehaviour
 {
-
+    public PlayerManager playerMnagaerETC;
+    public PlayerMovementETC playerMovement;
     public TextMeshProUGUI Timer; // public text mesh used to enable the timer on the UI
+    
+
     public float timernumber; // float that will be used to display the timer in the minigame
     
 
@@ -24,6 +28,16 @@ public class timer : MonoBehaviour
         RdeanTimer(timernumber);
         CheckGameConditions();
         
+        
+        
+    }
+    public IEnumerator WaitToFinishGame()
+    {
+
+        yield return new WaitForSeconds(5f);
+
+        SceneManager.LoadScene("BetterMainMenu"); // loads the main menu scene
+
     }
 
 
@@ -36,10 +50,24 @@ public class timer : MonoBehaviour
     {
         if (timernumber <= 0)
         {
-            SceneManager.LoadScene("BetterMainMenu"); // loads the main menu scene 
+            playerMnagaerETC.textBoxA.SetActive(true);
+            playerMnagaerETC.textBoxB.SetActive(true);
+            playerMnagaerETC.textBoxC.SetActive(true);
+            playerMnagaerETC.textBoxD.SetActive(true);
+            timernumber = 0;
+            playerMnagaerETC.playerFourScoreboard.text = playerMnagaerETC.playerFourScore.ToString(" : " + playerMnagaerETC.playerFourScore);
+            playerMnagaerETC.playerThreeScoreboard.text = playerMnagaerETC.playerThreeScore.ToString(" : " + playerMnagaerETC.playerThreeScore);
+            playerMnagaerETC.playerTwoScoreboard.text = playerMnagaerETC.playerTwoScore.ToString(" : " + playerMnagaerETC.playerTwoScore);
+            playerMnagaerETC.playerOneScoreboard.text = playerMnagaerETC.playerOneScore.ToString(" : " + playerMnagaerETC.playerOneScore);
+            Time.timeScale = 0;
+           
             Debug.Log("Game Over"); // Debugs out when the timer reaches 0 that the game is over
+            StartCoroutine(WaitToFinishGame());
+            
             
         }
 
     }
+    
+    
 }

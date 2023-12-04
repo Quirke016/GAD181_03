@@ -6,6 +6,8 @@ public class PlayerMovementETC : MonoBehaviour
 {
     public DestroyDirtETC DestroyDirt;
     public int playerNo = 0;
+    public bool canPlayerMove = true;
+   
     //[SerializeField] private GameObject blockToDestroy;
 
     // Start is called before the first frame update
@@ -17,7 +19,10 @@ public class PlayerMovementETC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         PlayerControls();
+        
+        PlayerMovementStop();
     }
 
    
@@ -26,24 +31,62 @@ public class PlayerMovementETC : MonoBehaviour
     {
         switch (playerNo)
         {
+           
+
             case 1:
-                if(playerNo == 1 && Input.GetKeyDown(KeyCode.S))
+                if (canPlayerMove == true)
                 {
-                    transform.Translate(0, -100 * Time.deltaTime, 0);
+                    if (playerNo == 1 && Input.GetKeyDown(KeyCode.S))
+                    {
+                        transform.Translate(0, -100 * Time.deltaTime, 0);
+                    }
                 }
-                 
+
                 break;
 
             case 2:
-                if (playerNo == 2 && Input.GetKeyDown(KeyCode.K))
+                if (canPlayerMove == true)
                 {
-                    transform.Translate(0, -100 * Time.deltaTime, 0);
+                    if (playerNo == 2 && Input.GetKeyDown(KeyCode.K))
+                    {
+                        transform.Translate(0, -100 * Time.deltaTime, 0);
+                    }
                 }
 
                 break;
 
-        }
+            case 3:
+                if (canPlayerMove == true)
+                {
+                    if (playerNo == 3 && Input.GetKeyDown(KeyCode.DownArrow))
+                    {
+                        transform.Translate(0, -100 * Time.deltaTime, 0);
+                    }
+                }
 
+                break;
+
+            case 4:
+                if (canPlayerMove == true)
+                {
+                    if (playerNo == 4 && Input.GetKeyDown(KeyCode.F))
+                    {
+                        transform.Translate(0, -100 * Time.deltaTime, 0);
+                    }
+                }
+
+                break;
+            
+        }
        
     }
+
+    void PlayerMovementStop()
+    {
+        if (canPlayerMove == false)
+        {
+            transform.position = gameObject.transform.position;
+        }
+    }
+        
 }

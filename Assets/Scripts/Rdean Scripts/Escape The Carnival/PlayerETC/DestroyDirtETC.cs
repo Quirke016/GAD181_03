@@ -28,5 +28,13 @@ public class DestroyDirtETC : MonoBehaviour
         {
             joeDirtBlock.SetActive(false);
         }
+        if (playerMovement.playerNo == 3 && other.CompareTag("Player"))
+        {
+            joeDirtBlock.SetActive(false);
+        }
+        if (playerMovement.playerNo == 4 && other.CompareTag("Player"))
+        {
+            joeDirtBlock.SetActive(false);
+        }
     }
 }
