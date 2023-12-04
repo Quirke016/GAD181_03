@@ -146,7 +146,7 @@ public class SS2_PattenGen : MonoBehaviour
     public void StartEnemyRound()
     {
         AddNewColorToPatten(randomBag);
-        StartCoroutine(ShowPattern(4, 1));
+        StartCoroutine(ShowPattern(simonPattern.Count+3, 1/ Mathf.Sqrt(simonPattern.Count)));
 
     }
     void Update()
