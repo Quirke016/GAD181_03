@@ -4,74 +4,67 @@ using UnityEngine;
 
 public class PlayerMovementETC : MonoBehaviour
 {
-    public DestroyDirtETC DestroyDirt;
-    public int playerNo = 0;
-    public bool canPlayerMove = true;
+    public DestroyDirtETC DestroyDirt; // reference to the destroy dirt script
+    public int playerNo = 0; // public int for the player num value
+    public bool canPlayerMove = true; // bool to enable whether the player can move or not
    
-    //[SerializeField] private GameObject blockToDestroy;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
         
-        PlayerControls();
+        PlayerControls(); // calls the player controls function
         
-        PlayerMovementStop();
+        PlayerMovementStop(); // calls/checks the player movement stop function
     }
 
    
 
-    void PlayerControls()
+    void PlayerControls() // player control function that has a switch that stores 4 cases inside of it, 1 for each player
     {
         switch (playerNo)
         {
            
 
             case 1:
-                if (canPlayerMove == true)
+                if (canPlayerMove == true) // checks to see if player can move is set to true
                 {
                     if (playerNo == 1 && Input.GetKeyDown(KeyCode.S))
                     {
-                        transform.Translate(0, -100 * Time.deltaTime, 0);
+                        transform.Translate(0, -100 * Time.deltaTime, 0); // moves the player down on the y axis when button is pressed
                     }
                 }
 
                 break;
 
             case 2:
-                if (canPlayerMove == true)
+                if (canPlayerMove == true) // checks to see if player can move is set to true
                 {
                     if (playerNo == 2 && Input.GetKeyDown(KeyCode.K))
                     {
-                        transform.Translate(0, -100 * Time.deltaTime, 0);
+                        transform.Translate(0, -100 * Time.deltaTime, 0); // moves the player down on the y axis when button is pressed
                     }
                 }
 
                 break;
 
             case 3:
-                if (canPlayerMove == true)
+                if (canPlayerMove == true) // checks to see if player can move is set to true
                 {
                     if (playerNo == 3 && Input.GetKeyDown(KeyCode.DownArrow))
                     {
-                        transform.Translate(0, -100 * Time.deltaTime, 0);
-                    }
+                        transform.Translate(0, -100 * Time.deltaTime, 0); // moves the player down on the y axis when button is pressed
                 }
 
                 break;
 
             case 4:
-                if (canPlayerMove == true)
+                if (canPlayerMove == true) // checks to see if player can move is set to true
                 {
                     if (playerNo == 4 && Input.GetKeyDown(KeyCode.F))
                     {
-                        transform.Translate(0, -100 * Time.deltaTime, 0);
+                        transform.Translate(0, -100 * Time.deltaTime, 0); // moves the player down on the y axis when button is pressed
                     }
                 }
 
@@ -81,7 +74,7 @@ public class PlayerMovementETC : MonoBehaviour
        
     }
 
-    void PlayerMovementStop()
+    void PlayerMovementStop() // player movement stop function that checks to see if player can move is set to false, when false players are stuck at their current positions 
     {
         if (canPlayerMove == false)
         {

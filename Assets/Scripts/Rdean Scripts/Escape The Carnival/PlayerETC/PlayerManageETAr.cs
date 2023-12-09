@@ -6,27 +6,31 @@ using UnityEditor.Experimental.GraphView;
 
 public class PlayerManager : MonoBehaviour
 {
-    public int playerOneScore;
-    public int playerTwoScore;
-    public int playerThreeScore;
-    public int playerFourScore;
+    public int playerOneScore; // int that displays players score
+    public int playerTwoScore; // int that displays players score
+    public int playerThreeScore; // int that displays players score
+    public int playerFourScore; // int that displays players score
 
-    public TextMeshProUGUI playerOnePoints;
-    public TextMeshProUGUI playerTwoPoints;
-    public TextMeshProUGUI playerThreePoints;
-    public TextMeshProUGUI playerFourPoints;
-    public TextMeshProUGUI playerOneScoreboard;
-    public TextMeshProUGUI playerTwoScoreboard;
-    public TextMeshProUGUI playerThreeScoreboard;
-    public TextMeshProUGUI playerFourScoreboard;
+    public bool playerCanScore; // bool to see if players are able to score
 
-    public GameObject textBoxA;
-    public GameObject textBoxB;
-    public GameObject textBoxC;
-    public GameObject textBoxD;
+    public TextMeshProUGUI playerOnePoints; // text mesh for players score
+    public TextMeshProUGUI playerTwoPoints; // text mesh for players score
+    public TextMeshProUGUI playerThreePoints; // text mesh for players score
+    public TextMeshProUGUI playerFourPoints; // text mesh for players score
+    public TextMeshProUGUI playerOneScoreboard; // text mesh that displayers players score at end of game
+    public TextMeshProUGUI playerTwoScoreboard; // text mesh that displayers players score at end of game
+    public TextMeshProUGUI playerThreeScoreboard; // text mesh that displayers players score at end of game
+    public TextMeshProUGUI playerFourScoreboard; // text mesh that displayers players score at end of game
+
+    public GameObject textBoxA; // public gameobject to turn player score off at start of game and on at end screen
+    public GameObject textBoxB; // public gameobject to turn player score off at start of game and on at end screen
+    public GameObject textBoxC; // public gameobject to turn player score off at start of game and on at end screen
+    public GameObject textBoxD; // public gameobject to turn player score off at start of game and on at end screen
+
+    public GameObject buttonMenu; // main menu button
 
 
-    public bool displayScore;
+    public bool displayScore; // bool that is used to know when to display the scoreboard
     
    
    
@@ -34,19 +38,17 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        displayScore = false;
-        playerOneScore = 0;
-        playerTwoScore = 0;
-        playerThreeScore = 0;
-        playerFourScore = 0;
-        //playerOneScoreboard.enabled = false;
-        //playerTwoScoreboard.enabled = false;
-       // playerThreeScoreboard.enabled = false;
-       // playerFourScoreboard.enabled = false;
-        textBoxA.SetActive(false);
-        textBoxB.SetActive(false);
-        textBoxC.SetActive(false);
-        textBoxD.SetActive(false);
+        displayScore = false; // sets displayscore to false when game starts
+        playerOneScore = 0; // sets player score to 0 when game starts
+        playerTwoScore = 0; // sets player score to 0 when game starts
+        playerThreeScore = 0; // sets player score to 0 when game starts
+        playerFourScore = 0; // sets player score to 0 when game starts
+        textBoxA.SetActive(false); // sets player scoreboard to false when game starts
+        textBoxB.SetActive(false); // sets player scoreboard to false when game starts
+        textBoxC.SetActive(false); // sets player scoreboard to false when game starts
+        textBoxD.SetActive(false); // sets player scoreboard to false when game starts
+        buttonMenu.SetActive(false); // sets button appearance to false when game starts
+        playerCanScore = true; // enables the player to score
 
     }
 
@@ -54,47 +56,47 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
 
-        PlayerScoringSystem();
-        DisplayScoreBoard();
+        PlayerScoringSystem(); // calls the scoring system function
+        DisplayScoreBoard(); // calls the scoreboard system function
      
     }
-    public void SetDisplaceScore(bool displaceScore)
+    public void SetDisplaceScore(bool displaceScore) // function that takes in a bool and sets the display score bool to true or false
     {
-        displayScore = displaceScore;
+        displayScore = displaceScore; // sets the value of display score to that of displace score
     }
-    void PlayerScoringSystem()
+    void PlayerScoringSystem() // player scoring function that displays the players score at the top of the screen as well as adds to their score when their button is pressed
     {
-        playerOnePoints.SetText("Player One: " + playerOneScore.ToString());
-        playerTwoPoints.SetText("Player Two: " + playerTwoScore.ToString());
-        playerThreePoints.SetText("Player Three: " + playerThreeScore.ToString());
-        playerFourPoints.SetText("Player Four: " + playerFourScore.ToString());
+        playerOnePoints.SetText("Player One (S): " + playerOneScore.ToString()); // converts player score to string and displays their score in real time
+        playerTwoPoints.SetText("Player Two (K): " + playerTwoScore.ToString()); // converts player score to string and displays their score in real time
+        playerThreePoints.SetText("Player Three (DownArrow): " + playerThreeScore.ToString()); // converts player score to string and displays their score in real time
+        playerFourPoints.SetText("Player Four (F): " + playerFourScore.ToString()); // converts player score to string and displays their score in real time
 
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S) && playerCanScore == true) // checks to see if player scoring is enabled and the assigned player button is pressed
         {
-            Debug.Log("Player One is scoring!");
-            playerOneScore++;
+            Debug.Log("Player One is scoring!"); // debugs that the player is scoring
+            playerOneScore++; // adds to the players score when button is pressed
         }
 
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K) && playerCanScore == true) // checks to see if player scoring is enabled and the assigned player button is pressed
         {
-            Debug.Log("Player Two is scoring!");
-            playerTwoScore++;
+            Debug.Log("Player Two is scoring!"); // debugs that the player is scoring
+            playerTwoScore++; // adds to the players score when button is pressed
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) && playerCanScore == true) // checks to see if player scoring is enabled and the assigned player button is pressed
         {
-            Debug.Log("Player Three is scoring!");
-            playerThreeScore++;
+            Debug.Log("Player Three is scoring!"); // debugs that the player is scoring
+            playerThreeScore++; // adds to the players score when button is pressed
         }
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && playerCanScore == true) // checks to see if player scoring is enabled and the assigned player button is pressed
         {
-            Debug.Log("Player Four is scoring!");
-            playerFourScore++;
+            Debug.Log("Player Four is scoring!"); // debugs that the player is scoring
+            playerFourScore++; // adds to the players score when button is pressed
         }
     }
 
-    void DisplayScoreBoard()
+    void DisplayScoreBoard() //  display scoreboard function that when set to true displays player scores at the end of the game
     {
         
         if(displayScore == true)
@@ -103,40 +105,10 @@ public class PlayerManager : MonoBehaviour
             playerTwoScoreboard.enabled = true;
             playerThreeScoreboard.enabled = true;
             playerFourScoreboard.enabled = true;
-        }
-    }
-    /*void PlayerScores()
-    {
-        if (playerOneScore == 130 && playerTwoScore != 130 && playerThreeScore != 130 && playerFourScore != 130)
-        {
-            
-            Debug.Log("Player One has escaped!");
-            
-        }
-
-        if (playerTwoScore == 130 && playerOneScore != 130 && playerThreeScore != 130 && playerFourScore != 130)
-        {
-            
-            Debug.Log("Player Two has escaped!");
            
         }
-
-        if (playerThreeScore == 130 && playerOneScore != 130 && playerTwoScore != 130 && playerFourScore != 130)
-        {
-            
-            Debug.Log("Player Three has escaped!");
-            
-        }
-
-        if (playerFourScore == 130 && playerOneScore != 130 && playerTwoScore != 130 && playerThreeScore != 130)
-        {
-            
-            Debug.Log("Player Four has escaped!");
-            
-
-        }
-        
-    }*/
+    }
+  
 
 
 

@@ -4,21 +4,10 @@ using UnityEngine;
 
 public class DestroyDirtETC : MonoBehaviour
 {
-    public GameObject joeDirtBlock;
-    public PlayerMovementETC playerMovement;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject joeDirtBlock; // public game object for our dirt blocks
+    public PlayerMovementETC playerMovement; // reference to the player movement script
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void OnTriggerEnter2D(Collider2D other)
+    public void OnTriggerEnter2D(Collider2D other) // checks to see the number of the player that interacts with the block as well as if they have the player tag, if the player interacts with the block it is set to inactive
     {
         if (playerMovement.playerNo == 1 && other.CompareTag("Player"))
         {
