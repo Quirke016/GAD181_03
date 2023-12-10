@@ -55,6 +55,7 @@ public class PlayerMovementETC : MonoBehaviour
                     if (playerNo == 3 && Input.GetKeyDown(KeyCode.DownArrow))
                     {
                         transform.Translate(0, -100 * Time.deltaTime, 0); // moves the player down on the y axis when button is pressed
+                    }
                 }
 
                 break;
